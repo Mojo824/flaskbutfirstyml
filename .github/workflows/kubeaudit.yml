@@ -1,0 +1,15 @@
+name: Kube Security Check
+
+on: [push]
+
+jobs:
+  kubeaudit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install kubeaudit
+        run: |
+          curl -sSL https://raw.githubusercontent.com/Shopify/kubeaudit/main/install.sh | sh
+      - name: Run kubeaudit
+        run: |
+          ./kubeaudit all --manifest k8s/flask-deployment.yaml
