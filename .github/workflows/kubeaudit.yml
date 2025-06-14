@@ -7,6 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Debug kubeaudit download
+        run: |
+          file kubeaudit
+          head -n 5 kubeaudit
+
       - name: Install kubeaudit
         run: |
           curl -sSL -o kubeaudit https://github.com/Shopify/kubeaudit/releases/latest/download/kubeaudit_0.21.0_linux_amd64
